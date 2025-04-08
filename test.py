@@ -2,7 +2,7 @@ import requests
 import os
 
 url = "http://localhost:8000/convert-to-latex"
-file_path = "/Users/mihailprudnikov/Documents/uni/SecondYear/курсач/api_bot/data/test/2025-04-08 17.09.49.jpg"
+file_path = "/Users/mihailprudnikov/Documents/uni/SecondYear/курсач/api_bot/git/api_latex/data/test/2025-04-08 17.09.49.jpg"
 
 try:
     with open(file_path, 'rb') as f:

@@ -1,22 +1,23 @@
+import os
 import base64
 import openai
-import os
+
 
 API_KEY = os.getenv("API_GPT_KEY")
 
 client = openai.OpenAI(api_key=API_KEY)
 
 
-def encode_image(image_data: bytes) -> str:
-    """Кодирует бинарные данные изображения в base64"""
-    return base64.b64encode(image_data).decode('utf-8')
+def encode_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
 
 
-def get_latex(image_data) -> str:
+def get_latex(image_path) -> str:
     """
-    Принимает бинарные данные изображения и возвращает LaTeX-код
+    Отправляет изображение в OpenAI и получает LaTeX-код.
     """
-    base64_image = encode_image(image_data)
+    base64_image = encode_image(image_path)
 
     response = client.responses.create(
         model="gpt-4o-mini-2024-07-18",
